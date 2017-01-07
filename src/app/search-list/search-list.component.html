@@ -1,0 +1,27 @@
+<form (submit)="search(term.value)">
+  <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+    <input #term (keyup)="search(term.value)" [value]="terms" class="form-control" placeholder="Search" autofocus>
+    <div class="input-group-btn">
+      <button type="submit" class="btn btn btn-default btn-flat"><i class="fa fa-search"></i></button>
+    </div>
+  </div>
+</form>
+
+<p>Results: {{ total$ | async }}</p>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let movie of items$ | async">
+      <td>{{ movie.id }}</td>
+      <td>{{ movie.title }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<pagination [total]="total$ | async" [page]="page" (goTo)="goToPage($event)"></pagination>
