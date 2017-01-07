@@ -7,6 +7,7 @@ cd /tmp/angular-search-list
 git checkout gh-pages
 cd -
 ng build
+sed -i 's/<base href="\/">/<base href="\/angular-search-list\/">/' dist/index.html
 cp -rf dist/* /tmp/angular-search-list/
 cd /tmp/angular-search-list
 git add .
